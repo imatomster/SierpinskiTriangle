@@ -1,3 +1,5 @@
+int triangleLayers = 500;
+
 public void setup()
 {
 	size(500,500);
@@ -7,31 +9,23 @@ public void setup()
 public void draw()
 {
 	background(0);
-	sierpinskiT(0, height, height);
-	sierpinskiS(250, 250, 150);
+	sierpinski(0, height, height);
 }
-public void sierpinskiT(int x, int y, int len) 
+public void sierpinski(int x, int y, int len) 
 {
-	if(len <= 20){
+	if(len <= triangleLayers){
 		triangle(x, y, x + len, y, x + len/2, y - len);
 	}else {
-		sierpinskiT(x, y, len/2);
-		sierpinskiT(x + len/4, y - len/2, len/2);
-		sierpinskiT(x + len/2, y, len/2);
+		sierpinski(x, y, len/2);
+		sierpinski(x + len/4, y - len/2, len/2);
+		sierpinski(x + len/2, y, len/2);
 	}
 }
-
-public void sierpinskiS(int x, int y, int len){
-	if(len <= 125){
-		rect(x - len/2, y - len/2, len, len);
-	}else {
-		sierpinskiS(x - len,y + len,len/2);
-		sierpinskiS(x - len,y - len,len/2);
-		sierpinskiS(x - len,y,len/2);
-		sierpinskiS(x + len,y,len/2);
-		sierpinskiS(x + len,y + len,len/2);
-		sierpinskiS(x + len,y - len,len/2);
-		sierpinskiS(x,y - len,len/2);
-		sierpinskiS(x,y + len,len/2);
-	}	
+public void keyPressed(){
+	if(keyCode == UP && triangleLayers > 20){
+		triangleLayers /= 5;
+	}
+	if(keyCode == DOWN && triangleLayers < 500){
+		triangleLayers *= 5;
+	}
 }
