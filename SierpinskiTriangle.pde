@@ -22,10 +22,10 @@ public void sierpinski(int x, int y, int len)
 	}
 }
 public void keyPressed(){
-	if(keyCode == UP && triangleLayers > 20){
-		triangleLayers /= 5;
+	if(keyCode == UP && triangleLayers > 5){
+		triangleLayers /= 3;
 	}
 	if(keyCode == DOWN && triangleLayers < 500){
-		triangleLayers *= 5;
+		triangleLayers *= 3;
 	}
 }
